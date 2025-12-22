@@ -4,6 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const routes = require('./routes');
 const pool = require('./config/database');
+const { runMigrations } = require('./migrations');
 
 const compression = require('compression');
 const app = express();
@@ -23,7 +24,25 @@ app.use('/api', routes);
 // Health check
 app.get('/', (req, res) => res.send('API Mapa Eleitoral RJ 2018/2022 Online'));
 
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
-});
+// Iniciar servidor com migrations
+async function startServer() {
+    try {
+        // Executar migrations antes de iniciar
+        console.log('\n🗳️  API Mapa Eleitoral RJ');
+        console.log('========================================\n');
 
+        await runMigrations();
+
+        console.log('\n========================================');
+
+        app.listen(PORT, () => {
+            console.log(`\n🚀 Servidor rodando na porta ${PORT}`);
+            console.log(`📍 http://localhost:${PORT}\n`);
+        });
+    } catch (err) {
+        console.error('❌ Erro ao iniciar servidor:', err);
+        process.exit(1);
+    }
+}
+
+startServer();

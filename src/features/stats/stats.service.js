@@ -99,6 +99,111 @@ class StatsService {
         cache.set(cacheKey, result, 300); // 5 min cache
         return result;
     }
+
+    /**
+     * Analisa crescimento de um candidato entre 2018 e 2022
+     * Compara votos por local_id e retorna ranking de evolução
+     */
+    async getCrescimento(filters) {
+        const { candidato, cargo } = filters;
+
+        if (!candidato || !cargo) {
+            throw new Error('Candidato e cargo são obrigatórios');
+        }
+
+        const cacheKey = `crescimento_${candidato}_${cargo}`;
+        const cached = cache.get(cacheKey);
+        if (cached) return cached;
+
+        // Query para obter votos do candidato em 2018 e 2022 por local
+        const query = `
+            WITH votos_2018 AS (
+                SELECT 
+                    v.local_id,
+                    l.nome_local,
+                    l.bairro,
+                    l.cidade,
+                    l.latitude,
+                    l.longitude,
+                    v.total_votos as votos_2018
+                FROM votos_agregados v
+                JOIN locais_votacao l ON v.local_id = l.id
+                WHERE v.ano = 2018 
+                  AND v.candidato_numero = $1 
+                  AND v.cargo = $2
+            ),
+            votos_2022 AS (
+                SELECT 
+                    v.local_id,
+                    v.total_votos as votos_2022
+                FROM votos_agregados v
+                WHERE v.ano = 2022 
+                  AND v.candidato_numero = $1 
+                  AND v.cargo = $2
+            )
+            SELECT 
+                COALESCE(v18.local_id, v22.local_id) as local_id,
+                COALESCE(v18.nome_local, l.nome_local) as nome_local,
+                COALESCE(v18.bairro, l.bairro) as bairro,
+                COALESCE(v18.cidade, l.cidade) as cidade,
+                COALESCE(v18.latitude, l.latitude) as latitude,
+                COALESCE(v18.longitude, l.longitude) as longitude,
+                COALESCE(v18.votos_2018, 0) as votos_2018,
+                COALESCE(v22.votos_2022, 0) as votos_2022,
+                COALESCE(v22.votos_2022, 0) - COALESCE(v18.votos_2018, 0) as variacao_nominal,
+                CASE 
+                    WHEN COALESCE(v18.votos_2018, 0) > 0 
+                    THEN ROUND(((COALESCE(v22.votos_2022, 0) - v18.votos_2018)::numeric / v18.votos_2018 * 100), 2)
+                    ELSE NULL 
+                END as variacao_percentual
+            FROM votos_2018 v18
+            FULL OUTER JOIN votos_2022 v22 ON v18.local_id = v22.local_id
+            LEFT JOIN locais_votacao l ON COALESCE(v18.local_id, v22.local_id) = l.id
+            WHERE COALESCE(v18.votos_2018, 0) > 0 OR COALESCE(v22.votos_2022, 0) > 0
+            ORDER BY variacao_nominal DESC
+        `;
+
+        const result = await pool.query(query, [candidato, cargo]);
+
+        // Calcular totais
+        const totals = result.rows.reduce((acc, row) => ({
+            total_2018: acc.total_2018 + parseInt(row.votos_2018),
+            total_2022: acc.total_2022 + parseInt(row.votos_2022)
+        }), { total_2018: 0, total_2022: 0 });
+
+        const response = {
+            candidato,
+            cargo,
+            resumo: {
+                total_2018: totals.total_2018,
+                total_2022: totals.total_2022,
+                variacao_nominal: totals.total_2022 - totals.total_2018,
+                variacao_percentual: totals.total_2018 > 0
+                    ? ((totals.total_2022 - totals.total_2018) / totals.total_2018 * 100).toFixed(2)
+                    : null,
+                total_locais_analisados: result.rows.length
+            },
+            top_crescimento: result.rows.slice(0, 10).map(r => ({
+                ...r,
+                votos_2018: parseInt(r.votos_2018),
+                votos_2022: parseInt(r.votos_2022),
+                variacao_nominal: parseInt(r.variacao_nominal),
+                latitude: parseFloat(r.latitude),
+                longitude: parseFloat(r.longitude)
+            })),
+            top_queda: result.rows.slice(-10).reverse().map(r => ({
+                ...r,
+                votos_2018: parseInt(r.votos_2018),
+                votos_2022: parseInt(r.votos_2022),
+                variacao_nominal: parseInt(r.variacao_nominal),
+                latitude: parseFloat(r.latitude),
+                longitude: parseFloat(r.longitude)
+            }))
+        };
+
+        cache.set(cacheKey, response, 300);
+        return response;
+    }
 }
 
 module.exports = new StatsService();
