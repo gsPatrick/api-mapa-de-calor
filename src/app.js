@@ -5,9 +5,11 @@ const path = require('path');
 const routes = require('./routes');
 const pool = require('./config/database');
 
+const compression = require('compression');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+app.use(compression()); // Enable Gzip
 app.use(cors());
 app.use(express.json());
 

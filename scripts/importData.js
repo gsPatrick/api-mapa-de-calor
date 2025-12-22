@@ -113,7 +113,10 @@ async function importData() {
     console.log('Iniciando importação completa (V2 - Correction)...');
 
     try {
-        // 0. Init Schema
+        // 0. Reset & Init Schema
+        console.log('Resetando banco de dados...');
+        await client.query('DROP TABLE IF EXISTS votos_agregados, locais_votacao CASCADE');
+
         console.log('Criando Schema...');
         const schemaSql = fs.readFileSync(path.join(__dirname, '../src/models/schema.sql'), 'utf8');
         await client.query(schemaSql);
@@ -132,6 +135,7 @@ async function importData() {
                     const localNum = row['NR_LOCAL_VOTACAO'];
 
                     if (!mun || !zona || !secao || !localNum) return;
+                    if (row['SG_UF'] !== 'RJ') return; // Filter only Rio de Janeiro
 
                     const localKey = getLocalKey(mun, zona, localNum);
                     const sectionKey = getSectionKey(mun, zona, secao);
