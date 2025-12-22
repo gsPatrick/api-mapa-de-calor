@@ -1,7 +1,7 @@
 const pool = require('../../config/database');
 
 class EscolasService {
-    async getRanking(localId, cargo) {
+    async getRanking(localId, cargo, ano) {
         let query = `
             SELECT cargo, candidato_numero, candidato_nome, partido_sigla, total_votos
             FROM votos_agregados
@@ -9,10 +9,18 @@ class EscolasService {
         `;
 
         const params = [localId];
+        let paramIndex = 2;
 
         if (cargo) {
-            query += ` AND cargo = $2`;
+            query += ` AND cargo = $${paramIndex}`;
             params.push(cargo);
+            paramIndex++;
+        }
+
+        if (ano) {
+            query += ` AND ano = $${paramIndex}`;
+            params.push(ano);
+            paramIndex++;
         }
 
         query += ` ORDER BY total_votos DESC`;
@@ -46,11 +54,11 @@ class EscolasController {
     async getRanking(req, res) {
         try {
             const { id } = req.params;
-            const { cargo } = req.query;
+            const { cargo, ano } = req.query;
 
             if (!id) return res.status(400).json({ error: 'ID da escola obrigatório' });
 
-            const ranking = await service.getRanking(id, cargo);
+            const ranking = await service.getRanking(id, cargo, ano);
             const details = await service.getDetails(id);
 
             res.json({ details, ranking });
