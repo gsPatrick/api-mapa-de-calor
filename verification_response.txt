@@ -1,0 +1,16 @@
+--- VERIFICATION START ---
+Checking for Cargo: PRESIDENTE
+Total Presidential Records: 49282
+
+Checking Candidate 22 (Jair Bolsonaro):
+Total Votes for 22: 10235140
+
+Checking Candidate 13 (Lula):
+Total Votes for 13: 8003360
+
+Sample Records (Top 5 for 22):
+{"id":2217737,"ano":2022,"cargo":"PRESIDENTE","candidato_nome":"JAIR BOLSONARO","candidato_numero":"22","partido_sigla":"PL","local_id":42706,"total_votos":2423}
+{"id":2217779,"ano":2022,"cargo":"PRESIDENTE","candidato_nome":"JAIR BOLSONARO","candidato_numero":"22","partido_sigla":"PL","local_id":28084,"total_votos":2671}
+{"id":2217780,"ano":2022,"cargo":"PRESIDENTE","candidato_nome":"JAIR BOLSONARO","candidato_numero":"22","partido_sigla":"PL","local_id":941,"total_votos":2236}
+{"id":2217781,"ano":2022,"cargo":"PRESIDENTE","candidato_nome":"JAIR BOLSONARO","candidato_numero":"22","partido_sigla":"PL","local_id":24884,"total_votos":4813}
+{"id":2217782,"ano":2022,"cargo":"PRESIDENTE","candidato_nome":"JAIR BOLSONARO","candidato_numero":"22","partido_sigla":"PL","local_id":32037,"total_votos":1349}

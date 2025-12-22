@@ -1,0 +1,52 @@
+[
+  {
+    "id": 78,
+    "nome_local": "CENTRO EDUCACIONAL RAUL VEIGA",
+    "latitude": -22.825669,
+    "longitude": -42.982974,
+    "votos": 1,
+    "total_local": 5083,
+    "percent": 0.02,
+    "nome": "CENTRO EDUCACIONAL RAUL VEIGA"
+  },
+  {
+    "id": 2024,
+    "nome_local": "CIEP 404 - CLARICE LISPECTOR",
+    "latitude": -22.709774,
+    "longitude": -43.304207,
+    "votos": 1,
+    "total_local": 4687,
+    "percent": 0.02,
+    "nome": "CIEP 404 - CLARICE LISPECTOR"
+  },
+  {
+    "id": 2036,
+    "nome_local": "(ESCOLA DO FUTURO) INSTITUTO FEDERAL DE EDUCAÇÃO CIÊNCIA E TECNOLOGIA",
+    "latitude": -22.749408,
+    "longitude": -43.298938,
+    "votos": 1,
+    "total_local": 2142,
+    "percent": 0.04,
+    "nome": "(ESCOLA DO FUTURO) INSTITUTO FEDERAL DE EDUCAÇÃO CIÊNCIA E TECNOLOGIA"
+  },
+  {
+    "id": 2312,
+    "nome_local": "ESCOLA MUNICIPAL ROBERTO WEGUELIN DE ABREU",
+    "latitude": -22.630303,
+    "longitude": -43.219031,
+    "votos": 7,
+    "total_local": 2501,
+    "percent": 0.28,
+    "nome": "ESCOLA MUNICIPAL ROBERTO WEGUELIN DE ABREU"
+  },
+  {
+    "id": 2321,
+    "nome_local": "EDUCANDÁRIO SANTA CECÍLIA",
+    "latitude": -22.774504,
+    "longitude": -43.296766,
+    "votos": 1,
+    "total_local": 1647,
+    "percent": 0.06,
+    "nome": "EDUCANDÁRIO SANTA CECÍLIA"
+  }
+]

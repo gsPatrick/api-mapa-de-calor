@@ -1,0 +1,11 @@
+node_modules/
+.env
+*.log
+.DS_Store
+# Data files
+votacao_secao_2022_BR/
+votacao_secao_2022_RJ/
+consulta_cand_2022/
+eleitorado_local_votacao_2022/
+foto_cand2022_RJ_div/
+2018/

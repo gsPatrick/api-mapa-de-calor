@@ -1,0 +1,42 @@
+[
+  {
+    "id": 42706,
+    "nome_local": "COLÉGIO MUNICIPAL CLÉCIO PENEDO",
+    "latitude": "-22.565717",
+    "longitude": "-44.163195",
+    "total_votos": 2423,
+    "total_cargo": "5782"
+  },
+  {
+    "id": 28084,
+    "nome_local": "ESCOLA ESTADUAL ALMIRANTE BARAO DE TEFFE",
+    "latitude": "-21.540332",
+    "longitude": "-42.179686",
+    "total_votos": 2671,
+    "total_cargo": "4641"
+  },
+  {
+    "id": 941,
+    "nome_local": "COLÉGIO MUNICIPAL 29 DE MAIO",
+    "latitude": "-21.742960",
+    "longitude": "-41.344475",
+    "total_votos": 2236,
+    "total_cargo": "4017"
+  },
+  {
+    "id": 24884,
+    "nome_local": "ESCOLA MUNICIPAL PRINCESA ISABEL",
+    "latitude": "-22.923078",
+    "longitude": "-43.692767",
+    "total_votos": 4813,
+    "total_cargo": "8739"
+  },
+  {
+    "id": 32037,
+    "nome_local": "ESCOLA MUNICIPAL HUMBERTO DE CAMPOS",
+    "latitude": "-21.208900",
+    "longitude": "-41.915162",
+    "total_votos": 1349,
+    "total_cargo": "2661"
+  }
+]
