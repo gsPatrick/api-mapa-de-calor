@@ -13,6 +13,8 @@ class MapaController {
             // Default to 2022 if ano not specified
             const year = ano ? parseInt(ano) : 2022;
 
+            console.log(`🔍 [MAPA] Params: cargo=${cargo}, numero=${numero}, ano=${year}, municipio=${municipio}, bairro=${bairro}, zona=${zona}, partido=${partido}`);
+
             const points = await mapaService.getHeatmapData(
                 cargo,
                 numero,
@@ -22,6 +24,10 @@ class MapaController {
                 zona,
                 partido
             );
+
+            const totalVotos = points.reduce((acc, p) => acc + (p.votos || 0), 0);
+            console.log(`✅ [MAPA] Retornando ${points.length} pontos com ${totalVotos} votos totais`);
+
             res.json(points);
         } catch (error) {
             console.error(error);
