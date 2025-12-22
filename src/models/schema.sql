@@ -19,7 +19,8 @@ CREATE TABLE IF NOT EXISTS votos_agregados (
     candidato_numero VARCHAR(20),
     partido_sigla VARCHAR(20),
     local_id INTEGER REFERENCES locais_votacao(id),
-    total_votos INTEGER DEFAULT 0
+    total_votos INTEGER DEFAULT 0,
+    UNIQUE (ano, cargo, candidato_numero, local_id)
 );
 
 -- Índices para alta performance

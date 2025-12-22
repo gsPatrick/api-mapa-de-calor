@@ -237,6 +237,8 @@ async function importData() {
             const query = `
             INSERT INTO votos_agregados (ano, cargo, candidato_nome, candidato_numero, partido_sigla, local_id, total_votos)
             VALUES ${placeholders.join(',')}
+            ON CONFLICT (ano, cargo, candidato_numero, local_id) DO UPDATE
+            SET total_votos = EXCLUDED.total_votos;
         `;
 
             await client.query(query, values);
