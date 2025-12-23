@@ -164,6 +164,15 @@ const migrations = [
             VALUES ('Administrador', 'admin@admin.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'admin')
             ON CONFLICT (email) DO NOTHING;
         `
+    },
+    {
+        name: '009_admin_user_fix_hash',
+        up: `
+            -- Hash bcrypt CORRETO gerado para 'admin123'
+            UPDATE usuarios 
+            SET senha_hash = '$2b$10$7VRhZxcYA0Cr0yHt/qNjyeuVPiLLyBXz/BNps0XaourQ0DJbK8Sbu'
+            WHERE email = 'admin@admin.com';
+        `
     }
 ];
 
