@@ -121,18 +121,6 @@ class IntelligenceService {
                     valor: `${concentracaoCapital}%`,
                     status: parseFloat(concentracaoCapital) > 50 ? 'FOCO URBANO' : 'DISTRIBUÍDO',
                     statusColor: parseFloat(concentracaoCapital) > 50 ? 'blue' : 'green'
-                },
-                {
-                    nome: 'Potencial Crescimento',
-                    valor: potencialCrescimento >= 0 ? `+${potencialCrescimento.toLocaleString('pt-BR')}` : potencialCrescimento.toLocaleString('pt-BR'),
-                    status: potencialCrescimento > 0 ? 'OPORTUNIDADE' : potencialCrescimento === 0 ? 'ESTÁVEL' : 'ATENÇÃO',
-                    statusColor: potencialCrescimento > 0 ? 'yellow' : potencialCrescimento === 0 ? 'gray' : 'red'
-                },
-                {
-                    nome: 'Meta 2026',
-                    valor: `${meta2026.toLocaleString('pt-BR')} votos`,
-                    status: 'OBJETIVO REALISTA',
-                    statusColor: 'blue'
                 }
             ],
             resumo: {
