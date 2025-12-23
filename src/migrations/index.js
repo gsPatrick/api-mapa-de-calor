@@ -137,6 +137,18 @@ const migrations = [
             VALUES ('Administrador', 'admin@mapaeleitoral.rj', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'admin')
             ON CONFLICT (email) DO NOTHING;
         `
+    },
+    {
+        name: '007_admin_user_update',
+        up: `
+            -- Atualizar/criar usuário admin padrão (email: admin@admin.com, senha: senha123)
+            -- Hash bcrypt para 'senha123': $2b$10$QM6wAS09QKGbcCfJ0ufyC.YbeU3BWyILSFyeEY4ZqPa4FkgqpLKvO
+            INSERT INTO usuarios (nome, email, senha_hash, role)
+            VALUES ('Administrador', 'admin@admin.com', '$2b$10$QM6wAS09QKGbcCfJ0ufyC.YbeU3BWyILSFyeEY4ZqPa4FkgqpLKvO', 'admin')
+            ON CONFLICT (email) DO UPDATE SET 
+                senha_hash = EXCLUDED.senha_hash,
+                role = 'admin';
+        `
     }
 ];
 
