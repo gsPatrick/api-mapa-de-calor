@@ -9,6 +9,7 @@ const statsController = require('../features/stats/stats.controller');
 const filtrosController = require('../features/filtros/filtros.controller');
 const authController = require('../features/auth/auth.controller');
 const adminController = require('../features/admin/admin.controller');
+const intelligenceController = require('../features/intelligence/intelligence.controller');
 
 // Middleware
 const { authMiddleware, requireRole } = require('../middleware/auth.middleware');
@@ -38,6 +39,11 @@ router.get('/escolas/:id', escolasController.getRanking);
 // Estatísticas
 router.get('/stats', statsController.getStats);
 router.get('/stats/crescimento', statsController.getCrescimento);
+
+// Inteligência (BI Analytics)
+router.get('/intelligence/resumo-executivo', intelligenceController.getResumoExecutivo);
+router.get('/intelligence/distribuicao-municipios', intelligenceController.getDistribuicaoMunicipios);
+router.get('/intelligence/top20-locais', intelligenceController.getTop20Locais);
 
 // =====================================================
 // ROTAS DE AUTENTICAÇÃO
