@@ -1,0 +1,69 @@
+DIAGNÓSTICO API - 2025-12-23T02:40:31.932Z
+==================================================
+
+RESUMO: 7 OK, 2 WARN, 2 FAIL
+
+[PASSED] Stats 2022 - PRESIDENTE
+   URL: https://geral-mapadecalorapi.r954jc.easypanel.host/api/stats?ano=2022&cargo=PRESIDENTE
+   total_votos: 19,883,285, locais: 4822
+
+[PASSED] Stats 2018 - PRESIDENTE
+   URL: https://geral-mapadecalorapi.r954jc.easypanel.host/api/stats?ano=2018&cargo=PRESIDENTE
+   total_votos: 18,901,092, locais: 4891
+
+[WARNING] Mapa 2022 - PRESIDENTE + Candidato 22
+   URL: https://geral-mapadecalorapi.r954jc.easypanel.host/api/mapa?ano=2022&cargo=PRESIDENTE&candidato=22
+   0 votos (5015 pontos) - Candidato não existe?
+
+[WARNING] Mapa 2018 - PRESIDENTE + Candidato 17
+   URL: https://geral-mapadecalorapi.r954jc.easypanel.host/api/mapa?ano=2018&cargo=PRESIDENTE&candidato=17
+   0 votos (5015 pontos) - Candidato 17 não existe em 2018?
+
+[PASSED] Escola ID=1 - 2022 PRESIDENTE
+   URL: https://geral-mapadecalorapi.r954jc.easypanel.host/api/escolas/1?ano=2022&cargo=PRESIDENTE
+   8 candidatos, total: 1,050 votos
+
+[PASSED] Escola ID=1 - 2018 PRESIDENTE
+   URL: https://geral-mapadecalorapi.r954jc.easypanel.host/api/escolas/1?ano=2018&cargo=PRESIDENTE
+   11 candidatos, total: 991 votos
+
+[PASSED] Filtros Candidatos 2022 PRESIDENTE
+   URL: https://geral-mapadecalorapi.r954jc.easypanel.host/api/filtros?ano=2022&cargo=PRESIDENTE
+   13 candidatos
+
+[PASSED] Filtros Candidatos 2018 PRESIDENTE
+   URL: https://geral-mapadecalorapi.r954jc.easypanel.host/api/filtros?ano=2018&cargo=PRESIDENTE
+   15 candidatos
+
+[FAILED] Intelligence Resumo 2022
+   URL: https://geral-mapadecalorapi.r954jc.easypanel.host/api/intelligence/resumo-executivo?candidato=22&cargo=PRESIDENTE&ano=2022
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /api/intelligence/resumo-executivo</pre>
+</body>
+</html>
+
+
+[FAILED] Intelligence Resumo 2018
+   URL: https://geral-mapadecalorapi.r954jc.easypanel.host/api/intelligence/resumo-executivo?candidato=17&cargo=PRESIDENTE&ano=2018
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /api/intelligence/resumo-executivo</pre>
+</body>
+</html>
+
+
+[PASSED] Cargos Disponíveis
+   URL: https://geral-mapadecalorapi.r954jc.easypanel.host/api/filtros/cargos
+   8 cargos: 1º SUPLENTE, 2º SUPLENTE, DEPUTADO ESTADUAL, DEPUTADO FEDERAL, GOVERNADOR...
+

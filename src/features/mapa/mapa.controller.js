@@ -8,16 +8,19 @@ class MapaController {
      */
     async getHeatmap(req, res) {
         try {
-            const { cargo, numero, municipio, ano, bairro, zona, partido } = req.query;
+            const { cargo, numero, candidato, municipio, ano, bairro, zona, partido } = req.query;
 
             // Default to 2022 if ano not specified
             const year = ano ? parseInt(ano) : 2022;
 
-            console.log(`🔍 [MAPA] Params: cargo=${cargo}, numero=${numero}, ano=${year}, municipio=${municipio}, bairro=${bairro}, zona=${zona}, partido=${partido}`);
+            // Suporta tanto 'numero' quanto 'candidato' como param
+            const candidatoNumero = numero || candidato;
+
+            console.log(`🔍 [MAPA] Params: cargo=${cargo}, numero=${candidatoNumero}, ano=${year}, municipio=${municipio}, bairro=${bairro}, zona=${zona}, partido=${partido}`);
 
             const points = await mapaService.getHeatmapData(
                 cargo,
-                numero,
+                candidatoNumero,
                 municipio,
                 year,
                 bairro,
