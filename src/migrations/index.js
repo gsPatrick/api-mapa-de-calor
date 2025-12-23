@@ -149,6 +149,21 @@ const migrations = [
                 senha_hash = EXCLUDED.senha_hash,
                 role = 'admin';
         `
+    },
+    {
+        name: '008_admin_user_correct_password',
+        up: `
+            -- Atualizar usuário admin com senha admin123
+            -- Hash bcrypt para 'admin123': $2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy
+            UPDATE usuarios 
+            SET senha_hash = '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy'
+            WHERE email = 'admin@admin.com';
+            
+            -- Se não existir, criar
+            INSERT INTO usuarios (nome, email, senha_hash, role)
+            VALUES ('Administrador', 'admin@admin.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'admin')
+            ON CONFLICT (email) DO NOTHING;
+        `
     }
 ];
 
