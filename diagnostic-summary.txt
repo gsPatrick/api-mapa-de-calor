@@ -1,7 +1,7 @@
-DIAGNÓSTICO API - 2025-12-23T02:45:49.601Z
+DIAGNÓSTICO API - 2025-12-23T02:52:15.755Z
 ==================================================
 
-RESUMO: 7 OK, 2 WARN, 2 FAIL
+RESUMO: 11 OK, 0 WARN, 0 FAIL
 
 [PASSED] Stats 2022 - PRESIDENTE
    URL: https://geral-mapadecalorapi.r954jc.easypanel.host/api/stats?ano=2022&cargo=PRESIDENTE
@@ -11,13 +11,13 @@ RESUMO: 7 OK, 2 WARN, 2 FAIL
    URL: https://geral-mapadecalorapi.r954jc.easypanel.host/api/stats?ano=2018&cargo=PRESIDENTE
    total_votos: 18,901,092, locais: 4891
 
-[WARNING] Mapa 2022 - PRESIDENTE + Candidato 22
+[PASSED] Mapa 2022 - PRESIDENTE + Candidato 22
    URL: https://geral-mapadecalorapi.r954jc.easypanel.host/api/mapa?ano=2022&cargo=PRESIDENTE&candidato=22
-   0 votos (5015 pontos) - Candidato não existe?
+   5015 pontos, 4822 com votos, total: 10,235,140
 
-[WARNING] Mapa 2018 - PRESIDENTE + Candidato 17
+[PASSED] Mapa 2018 - PRESIDENTE + Candidato 17
    URL: https://geral-mapadecalorapi.r954jc.easypanel.host/api/mapa?ano=2018&cargo=PRESIDENTE&candidato=17
-   0 votos (5015 pontos) - Candidato 17 não existe em 2018?
+   5015 pontos, 4891 com votos, total: 10,776,794
 
 [PASSED] Escola ID=1 - 2022 PRESIDENTE
    URL: https://geral-mapadecalorapi.r954jc.easypanel.host/api/escolas/1?ano=2022&cargo=PRESIDENTE
@@ -35,33 +35,13 @@ RESUMO: 7 OK, 2 WARN, 2 FAIL
    URL: https://geral-mapadecalorapi.r954jc.easypanel.host/api/filtros?ano=2018&cargo=PRESIDENTE
    15 candidatos
 
-[FAILED] Intelligence Resumo 2022
+[PASSED] Intelligence Resumo 2022
    URL: https://geral-mapadecalorapi.r954jc.easypanel.host/api/intelligence/resumo-executivo?candidato=22&cargo=PRESIDENTE&ano=2022
-   <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Error</title>
-</head>
-<body>
-<pre>Cannot GET /api/intelligence/resumo-executivo</pre>
-</body>
-</html>
+   8 métricas
 
-
-[FAILED] Intelligence Resumo 2018
+[PASSED] Intelligence Resumo 2018
    URL: https://geral-mapadecalorapi.r954jc.easypanel.host/api/intelligence/resumo-executivo?candidato=17&cargo=PRESIDENTE&ano=2018
-   <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Error</title>
-</head>
-<body>
-<pre>Cannot GET /api/intelligence/resumo-executivo</pre>
-</body>
-</html>
-
+   8 métricas, total: 10,776,794
 
 [PASSED] Cargos Disponíveis
    URL: https://geral-mapadecalorapi.r954jc.easypanel.host/api/filtros/cargos
